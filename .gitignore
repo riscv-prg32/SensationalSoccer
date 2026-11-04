@@ -53,3 +53,9 @@ dkms.conf
 
 # debug information files
 *.dwo
+
+# Cartridge build outputs
+/build/
+/store-bundle/
+__pycache__/
+*.pyc

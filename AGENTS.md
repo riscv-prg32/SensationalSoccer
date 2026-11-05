@@ -6,6 +6,6 @@ Before changing gameplay, read `README.md`, `docs/architecture.md`, and `docs/re
 
 Every behavior change requires documentation parity. Build with `./build.sh`, run `git diff --check`, validate JSON metadata, test QEMU with audio and input, and upload the final ESP32-C6 artifact to an explicitly named slot. Report any overwritten slot. Store media must be real QEMU output: a minimum 320×200 screenshot and a 60-second H.264/AAC preview with captured emulator PCM. Never fabricate test results.
 
-Audio policy: music is allowed only on title, result, game-over, and winning screens. Match play uses event effects only. Builds or demonstrations run during Central European night hours must set master volume to zero; daytime promotional capture may use a temporary nonzero capture build, after which the committed release must be rebuilt with night volume zero.
+Audio policy: music is allowed only on title, result, game-over, and winning screens. Match play uses event effects only. The regular publication volume is 160. Builds or demonstrations run during Central European night hours must temporarily set master volume to zero and restore the publication value afterward.
 
 Generated publication artifacts are `dist/*.prg32`, `dist/*.zip`, `assets/screenshot.png`, and `assets/preview.mp4`. Keep metadata, colophon, manifest, documentation, and packaged artifacts synchronized. Commit focused changes and push only after both target tests pass.

@@ -17,7 +17,7 @@ Choose home and away identities from Napoli, London, Tokyo, and Rio, then play a
 | B | Pass forward |
 | SELECT | Return to title/menu |
 
-When two consoles join the `sensational-soccer-v2` multiplayer room, the first remote peer controls the away team. With no peer, away remains AI-controlled. The Central European night release starts at volume zero; the full soundtrack and event mix remain packaged for daytime use and promotional capture.
+When two consoles join the `sensational-soccer-v2` multiplayer room, the first remote peer controls the away team. With no peer, away remains AI-controlled. The regular release uses master volume 160; set it to zero before Central European night testing.
 
 ## Build
 

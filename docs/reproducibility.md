@@ -30,7 +30,7 @@ python3 -m prg32 qemu upload ../SensationalSoccer/dist/sensational-soccer-qemu.p
 python3 -m prg32 qemu run --no-audio
 ```
 
-Verify that the attract match scrolls horizontally, the crowd animates, the ball visibly rises and bounces, and field markings remain stable while scrolling. Start play and check movement, A shooting, B passing, possession changes, collisions, goals, and SELECT. `--no-audio` is intentional for silent automated/night testing.
+Verify that title music is audible, the attract match scrolls horizontally, the crowd animates, the ball visibly rises and bounces, and field markings remain stable while scrolling. Start play and check that music stops while movement, A shooting, B passing, possession changes, collisions, goals, and match effects continue.
 
 ## Physical board test
 
@@ -42,7 +42,7 @@ python3 -m prg32 esp32c6 ports
 python3 -m prg32 esp32c6 upload ../SensationalSoccer/dist/sensational-soccer-esp32c6.prg32 --port /dev/cu.usbmodem1101 --slot cart0 --command run
 ```
 
-Repeat the QEMU checklist on the LCD and joystick. Confirm that the frame rate remains responsive, sprites do not leave trails, and the board stays silent because the cartridge master volume is zero. Substitute the actual enumerated port; do not assume the example port on another computer.
+Repeat the QEMU checklist on the LCD and joystick. Confirm that the frame rate remains responsive, sprites do not leave trails, title/result music is audible, and gameplay contains only match effects. Substitute the actual enumerated port; do not assume the example port on another computer.
 
 ## Multiplayer test
 

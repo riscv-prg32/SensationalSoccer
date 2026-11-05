@@ -44,8 +44,8 @@ static void formation(void){
 }
 void sensational_soccer_init(void){
  make_palette();frame=last_input=0;score[0]=score[1]=clock_frames=0;attract=0;goal_flash=0;camera_x=320;screen=SCREEN_TITLE;menu_cursor=mode=round_no=wins=celebrate=0;formation();
- /* Central European night build: audio remains completely muted. */
- prg32_audio_set_master_volume(0);prg32_audio_play_track(0);prg32_multiplayer_init();
+ /* Regular daytime release volume; use 0 for Central European night tests. */
+ prg32_audio_set_master_volume(160);prg32_audio_play_track(0);prg32_multiplayer_init();
  networked=prg32_multiplayer_available()&&prg32_multiplayer_join("sensational-soccer-v2",PRG32_MP_FLAG_ENABLE)==0;
  prg32_band_set_game_info("SENSATIONAL SOCCER / A SHOOT / B PASS");
 }

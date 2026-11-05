@@ -11,4 +11,4 @@ for arch in esp32c6 qemu; do
   cp "$here/dist/sensational-soccer-$arch.prg32" "$here/store-bundle/"
 done
 cp "$here/manifest.json" "$here/colophon.json" "$here/assets/icon.png" "$here/assets/screenshot.png" "$here/assets/preview.mp4" "$here/store-bundle/"
-(cd "$sdk" && python3 -m prg32 store pack-bundle --manifest "$here/store-bundle/manifest.json" --out "$here/dist/sensational-soccer-1.0.0.zip")
+(cd "$sdk" && python3 -m prg32 store pack-bundle --manifest "$here/store-bundle/manifest.json" --out "$here/dist/sensational-soccer-$(python3 -c "import json,sys;print(json.load(open(sys.argv[1]))['version'])" "$here/manifest.json").zip")

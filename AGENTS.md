@@ -9,3 +9,14 @@ Every behavior change requires documentation parity. Build with `./build.sh`, ru
 Audio policy: music is allowed only on title, result, game-over, and winning screens. Match play uses event effects only. The regular publication volume is 160. Builds or demonstrations run during Central European night hours must temporarily set master volume to zero and restore the publication value afterward.
 
 Generated publication artifacts are `dist/*.prg32`, `dist/*.zip`, `assets/screenshot.png`, and `assets/preview.mp4`. Keep metadata, colophon, manifest, documentation, and packaged artifacts synchronized. Commit focused changes and push only after both target tests pass.
+
+## Implementation rules learned in 1.1.0
+
+- Portable cartridges are not relocated: never use initialized static pointers or pointer tables (`const char *const x[]`). Use 2-D `char` arrays and form pointers at run time. A violation faults with a load access fault on QEMU.
+- Colours: sprites, text and sprite palettes use exact 6×6×6 cube colours via `CI()`/`c565()`; backgrounds use custom palette slots 8–15 and 232–255 only. Any other colour shifts on the ESP32-C6 indexed panel.
+- Audio:
+  - Screen changes go through `go_screen()`. `music_off()` must stop the tracker *and* all voices and restore channel volume 255.
+  - Tracker music levels come from the `SET_VOLUME` events that `scripts/generate_audio.py` emits, which the mixer applies squared. Re-check for clipping in captured PCM after any mix change.
+- Gameplay changes: re-run a host simulation of AI-vs-AI play and a sanitizer fuzz with random input (see `docs/reproducibility.md`) to rule out restart deadlocks, possession stalls and undefined behaviour.
+- Store media: produce them only with `scripts/capture_media.py`. It retries takes where QEMU stalls or the host pointer crosses the window; never use `--allow-pointer` for Store media. Rebuild after capturing so the new screenshot is embedded. In QEMU, do not send the `l` (D) key; it can freeze the firmware.
+- Version: `manifest.json`, `metadata.json` and `colophon.json` carry the same version. The bundle name follows `manifest.json`.

@@ -118,6 +118,8 @@ Substitute the actual enumerated port. Repeat the QEMU checklist on the LCD and 
 
 Report which slot was overwritten.
 
+For LCD screenshots, find the board's address with `python3 -m prg32 esp32c6 wifi-scan` (it prints `connected: <SSID> ip: <address>`), then run `python3 -m prg32 esp32c6 screenshot --url http://<address> --out shot.bmp`. The HTTP screenshot reads the framebuffer row by row over several frames. A shot taken while the camera scrolls therefore shows a diagonal shear in vertical lines and ad boards that is not on the LCD. Judge geometry from a static frame, such as the kick-off or a menu.
+
 ## Multiplayer test
 
 1. Run the PRG32 Multiplayer Server and configure both firmware instances with its WebSocket URL.

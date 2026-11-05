@@ -4,6 +4,7 @@ here="$(cd "$(dirname "$0")" && pwd)"
 sdk="${PRG32_REPO:-$here/../PRG32}"
 mkdir -p "$here/build" "$here/dist" "$here/store-bundle"
 python3 "$here/scripts/generate_audio.py"
+python3 "$here/scripts/store_manifest.py"
 python3 "$sdk/tools/prg32audio_pack.py" "$here/assets/audio.json" --out "$here/build/soccer.audio"
 for arch in esp32c6 qemu; do
   (cd "$sdk" && python3 -m prg32 cartridge build "$here/game.c" --portable --entry-prefix sensational_soccer --name "Sensational Soccer" --architecture "$arch" --cart-ram-kib 128 --required-feature audio --required-feature multiplayer --multiplayer --build-dir "$here/build/$arch" --out "$here/build/sensational-soccer-$arch-core.prg32" --audio-block "$here/build/soccer.audio")

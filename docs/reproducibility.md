@@ -21,7 +21,7 @@ shasum -a 256 dist/*.prg32 dist/*.zip
 
 `build.sh` does the following:
 
-1. regenerates `assets/audio.json` and `assets/sfx/*.raw`;
+1. regenerates `assets/audio.json` and `assets/sfx/*.raw`, and `manifest.json` from `metadata.json` and `colophon.json`;
 2. packs one AUDIO block;
 3. builds the ESP32-C6 and QEMU portable cartridges with the audio and multiplayer feature requirements;
 4. attaches the metadata, colophon, icon and screenshot;
@@ -32,6 +32,12 @@ Validate the JSON afterwards:
 ```bash
 for f in manifest.json metadata.json colophon.json assets/audio.json; do python3 -m json.tool "$f" >/dev/null && echo "ok $f"; done
 git diff --check
+```
+
+Check the bundle with the Cartridge Store's own intake code. It must report both architectures; a wrong manifest ABI fails here with `manifest.abi must be prg32-metadata-1.0`:
+
+```bash
+(cd ../CartridgeStore && python3 -c "import sys, zipfile; sys.path.insert(0, '.'); from cartridge_store import app; [print('ok', p['architecture']) for p in app._prepare_bundle(zipfile.ZipFile(sys.argv[1]))]" ../SensationalSoccer/dist/sensational-soccer-1.1.0.zip)
 ```
 
 ## Host simulation (optional, for tuning)

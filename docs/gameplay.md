@@ -6,4 +6,4 @@ Home and away may be Napoli, London, Tokyo, or Rio. Their selected primary color
 
 Outfield animation derives from simulation state: idle, a four-phase walk, close control, and a timed kick follow-through. Keepers have distinct colors and enter a dive/reach pose when a free ball approaches their penalty area. The crowd has faces, bodies, legs, raised arms, banners, parallax motion, and a timed jump animation after goals.
 
-Music starts only on title and result/winner screens and stops before kickoff. Gameplay triggers only football-related effects: kick/pass, whistle/save, and a layered goal roar. The publication build sets master volume to 160 in `sensational_soccer_init`; see `AGENTS.md` for the night-testing policy.
+Music starts only on title and result/winner screens. Every gameplay update explicitly keeps the tracker stopped, including demo matches and resumed championship rounds. Gameplay triggers only football-related effects: kick/pass, whistle/save, and a layered goal roar. The publication build sets master volume to 160 in `sensational_soccer_init`; see `AGENTS.md` for the night-testing policy.

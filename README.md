@@ -6,7 +6,7 @@ The touchline camera follows play across a 960-pixel pitch. Animated multi-frame
 
 ![Gameplay on the PRG32 pitch](assets/screenshot.png)
 
-Choose home and away identities from Napoli, London, Tokyo, and Rio, then play a single match or a three-round championship. Music is reserved for title and result screens; the match mix contains only football effects and goal celebrations.
+Choose home and away identities from Napoli, London, Tokyo, and Rio, then play a single match or a three-round championship. Music is reserved for title and result screens; normal and demo matches explicitly disable the soundtrack and contain only football effects and goal celebrations.
 
 ## Controls
 

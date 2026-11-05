@@ -67,6 +67,9 @@ void sensational_soccer_update(void){
   else if(screen==SCREEN_RESULT&&pressed&PRG32_BTN_A){if(mode&&round_no<2){round_no++;score[0]=score[1]=clock_frames=0;screen=SCREEN_MATCH;formation();prg32_audio_stop_track();}else{screen=SCREEN_TITLE;frame=0;prg32_audio_play_track(0);}}
   last_input=local;return;
  }
+ /* Gameplay is effects-only. Reassert this invariant so no tracker state can
+    survive a menu transition, reconnect, or resumed championship round. */
+ prg32_audio_stop_track();
  if(networked){prg32_multiplayer_set_input(local);prg32_multiplayer_set_local_state((int16_t)(p[controlled[0]].x/FP),(int16_t)(p[controlled[0]].y/FP),0,(uint16_t)score[0]);prg32_multiplayer_tick();}
  if(attract&&local){attract=0;score[0]=score[1]=clock_frames=0;formation();}if(pressed&PRG32_BTN_SELECT){screen=SCREEN_TITLE;frame=0;attract=0;prg32_audio_play_track(0);last_input=local;return;}
  if(kickoff)kickoff--;else{if(!attract)human(0,local,pressed);if(!attract&&remote)human(1,remote,remote);for(int i=0;i<N;i++){if(!attract&&i==controlled[0])continue;if(!attract&&remote&&i==controlled[1])continue;ai(i);}collisions();update_ball();clock_frames++;}
